@@ -4,11 +4,21 @@ public class BludoModel {
     private String BludoName;
     private String Category;
     private int BludoPhoto; //В бд будет хранится индентификатор из ресурсов
+    private int BludoPrice;
 
-    public BludoModel(String bludoName, String category, int bludoPhoto) {
+    public BludoModel(String bludoName, String category, int bludoPhoto, int bludoPrice) {
         BludoName = bludoName;
         Category = category;
         BludoPhoto = bludoPhoto;
+        BludoPrice = bludoPrice;
+    }
+
+    public int getBludoPrice() {
+        return BludoPrice;
+    }
+
+    public void setBludoPrice(int bludoPrice) {
+        BludoPrice = bludoPrice;
     }
 
     public String getBludoName() {

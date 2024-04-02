@@ -21,4 +21,6 @@ public interface BludoRepository {
     LiveData<List<BludoCategoryEntity>> getCategoriesFromDb();
 
     LiveData<List<BludoEntity>> getFoodFromCategory(int category_id);
+
+    BludoCategoryEntity getCategoryById(int id);
 }

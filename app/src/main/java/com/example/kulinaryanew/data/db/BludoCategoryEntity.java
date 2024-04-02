@@ -15,6 +15,8 @@ public class BludoCategoryEntity {
         CategoryName = categoryName;
     }
 
+    public BludoCategoryEntity() {}
+
     public int getCategoryId() {
         return CategoryId;
     }

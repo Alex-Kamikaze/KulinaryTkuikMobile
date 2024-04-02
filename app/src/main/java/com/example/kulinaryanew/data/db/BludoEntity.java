@@ -6,8 +6,8 @@ import androidx.room.PrimaryKey;
 
 @Entity(foreignKeys = {@ForeignKey(
         entity = BludoCategoryEntity.class,
-        parentColumns = "CategoryId",
-        childColumns = "CategoryId",
+        parentColumns = {"CategoryId"},
+        childColumns = {"CategoryId"},
         onDelete = ForeignKey.CASCADE
 )})
 public class BludoEntity {
@@ -16,6 +16,15 @@ public class BludoEntity {
     private String BludoName;
     private int CategoryId;
     private int BludoPhoto;
+    private int BludoPrice;
+
+    public int getBludoPrice() {
+        return BludoPrice;
+    }
+
+    public void setBludoPrice(int bludoPrice) {
+        BludoPrice = bludoPrice;
+    }
 
     public int getBludoId() {
         return BludoId;
@@ -49,10 +58,13 @@ public class BludoEntity {
         BludoPhoto = bludoPhoto;
     }
 
-    public BludoEntity(int bludoId, String bludoName, int categoryId, int bludoPhoto) {
+    public BludoEntity(int bludoId, String bludoName, int categoryId, int bludoPhoto, int bludoPrice) {
         BludoId = bludoId;
         BludoName = bludoName;
         CategoryId = categoryId;
         BludoPhoto = bludoPhoto;
+        BludoPrice = bludoPrice;
     }
+
+    public BludoEntity() {}
 }

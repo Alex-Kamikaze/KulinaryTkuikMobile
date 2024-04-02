@@ -54,4 +54,9 @@ public class FoodRepositoryImpl implements BludoRepository {
     public LiveData<List<BludoEntity>> getFoodFromCategory(int category_id) {
         return foodDao.getBludoFromCategory(category_id);
     }
+
+    @Override
+    public BludoCategoryEntity getCategoryById(int id) {
+        return categoryDao.getCategoryById(id);
+    }
 }

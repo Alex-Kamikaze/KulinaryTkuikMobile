@@ -7,20 +7,38 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 
 import com.example.kulinaryanew.R;
 import com.example.kulinaryanew.databinding.ActivityMainBinding;
+import com.example.kulinaryanew.domain.models.BludoModel;
+import com.example.kulinaryanew.presentation.adapters.FoodListAdapter;
 import com.example.kulinaryanew.presentation.viewmodels.FoodListViewModel;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     FoodListViewModel foodListViewModel;
+    FoodListAdapter adapter;
     ActivityMainBinding binding;
+    ArrayList<BludoModel> foodList;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         foodListViewModel = new ViewModelProvider(this).get(FoodListViewModel.class);
         binding = ActivityMainBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
+        foodList = (ArrayList<BludoModel>) foodListViewModel.bludos.getValue();
+        if(foodList == null) {
+            foodList = new ArrayList<>();
+        }
+        adapter = new FoodListAdapter(this, foodList);
+        foodListViewModel.bludos.observe(this, bludoModels -> {
+            foodList = (ArrayList<BludoModel>) bludoModels;
+            adapter.updateData((ArrayList<BludoModel>) bludoModels);
+        });
+        binding.foodListView.setAdapter(adapter);
     }
 }

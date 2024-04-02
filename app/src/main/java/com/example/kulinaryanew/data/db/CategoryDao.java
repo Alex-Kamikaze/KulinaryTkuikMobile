@@ -21,6 +21,5 @@ public interface CategoryDao {
     LiveData<List<BludoCategoryEntity>> getAllCategories();
 
     @Query("SELECT * FROM BludoCategoryEntity WHERE CategoryId = :id")
-    LiveData<BludoCategoryEntity> getCategoryById(int id);
-
+    BludoCategoryEntity getCategoryById(int id);
 }
