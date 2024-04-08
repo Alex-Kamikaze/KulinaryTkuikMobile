@@ -39,7 +39,7 @@ public class FoodListAdapter extends RecyclerView.Adapter<FoodListAdapter.FoodLi
         holder.foodName.setText(foodList.get(position).getBludoName());
         holder.categoryName.setText(foodList.get(position).getCategory());
         holder.price.setText(foodList.get(position).getBludoPrice());
-        holder.image.setImageDrawable(innerContext.getDrawable(foodList.get(position).getBludoPhoto()));
+        //holder.image.setImageDrawable(innerContext.getDrawable(foodList.get(position).get));
     }
 
     @Override

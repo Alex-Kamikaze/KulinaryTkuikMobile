@@ -1,5 +1,7 @@
 package com.example.kulinaryanew.domain.repository;
 
+import android.graphics.Bitmap;
+
 import androidx.lifecycle.LiveData;
 
 import com.example.kulinaryanew.BludoApplication;
@@ -8,11 +10,12 @@ import com.example.kulinaryanew.data.db.BludoCategoryEntity;
 import com.example.kulinaryanew.data.db.BludoDao;
 import com.example.kulinaryanew.data.db.BludoEntity;
 import com.example.kulinaryanew.data.db.CategoryDao;
+import com.example.kulinaryanew.data.repository.BludoImageStorage;
 import com.example.kulinaryanew.data.repository.BludoRepository;
 
 import java.util.List;
 
-public class FoodRepositoryImpl implements BludoRepository {
+public class FoodRepositoryImpl implements BludoRepository, BludoImageStorage {
     private final AppDatabase db = BludoApplication.getInstance().getDb();
     private final BludoDao foodDao = db.getBludoDao();
     private final CategoryDao categoryDao = db.getCategoryDao();
@@ -58,5 +61,20 @@ public class FoodRepositoryImpl implements BludoRepository {
     @Override
     public BludoCategoryEntity getCategoryById(int id) {
         return categoryDao.getCategoryById(id);
+    }
+
+    @Override
+    public void saveBludoImage(Bitmap image, String image_name, String format) {
+
+    }
+
+    @Override
+    public Bitmap getBludoImage(String image_name) {
+        return null;
+    }
+
+    @Override
+    public void deleteBludoImage(String image_name) {
+
     }
 }

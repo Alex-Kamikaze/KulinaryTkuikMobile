@@ -15,14 +15,14 @@ public class BludoEntity {
     private int BludoId;
     private String BludoName;
     private int CategoryId;
-    private int BludoPhoto;
+    private String BludoImageUri;
     private int BludoPrice;
 
-    public int getBludoPrice() {
-        return BludoPrice;
-    }
-
-    public void setBludoPrice(int bludoPrice) {
+    public BludoEntity(int bludoId, String bludoName, int categoryId, String bludoImageUri, int bludoPrice) {
+        BludoId = bludoId;
+        BludoName = bludoName;
+        CategoryId = categoryId;
+        BludoImageUri = bludoImageUri;
         BludoPrice = bludoPrice;
     }
 
@@ -50,19 +50,19 @@ public class BludoEntity {
         CategoryId = categoryId;
     }
 
-    public int getBludoPhoto() {
-        return BludoPhoto;
+    public String getBludoImageUri() {
+        return BludoImageUri;
     }
 
-    public void setBludoPhoto(int bludoPhoto) {
-        BludoPhoto = bludoPhoto;
+    public void setBludoImageUri(String bludoImageUri) {
+        BludoImageUri = bludoImageUri;
     }
 
-    public BludoEntity(int bludoId, String bludoName, int categoryId, int bludoPhoto, int bludoPrice) {
-        BludoId = bludoId;
-        BludoName = bludoName;
-        CategoryId = categoryId;
-        BludoPhoto = bludoPhoto;
+    public int getBludoPrice() {
+        return BludoPrice;
+    }
+
+    public void setBludoPrice(int bludoPrice) {
         BludoPrice = bludoPrice;
     }
 

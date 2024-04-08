@@ -9,6 +9,7 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
+import androidx.navigation.Navigation;
 
 import com.example.kulinaryanew.R;
 import com.example.kulinaryanew.databinding.ActivityMainBinding;
@@ -24,6 +25,12 @@ public class MainActivity extends AppCompatActivity {
     FoodListAdapter adapter;
     ActivityMainBinding binding;
     ArrayList<BludoModel> foodList;
+
+    @Override
+    public boolean onSupportNavigateUp() {
+        return Navigation.findNavController(this, R.id.navigation_host_fragment).navigateUp();
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,6 +46,5 @@ public class MainActivity extends AppCompatActivity {
             foodList = (ArrayList<BludoModel>) bludoModels;
             adapter.updateData((ArrayList<BludoModel>) bludoModels);
         });
-        binding.foodListView.setAdapter(adapter);
     }
 }

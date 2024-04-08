@@ -47,4 +47,5 @@ dependencies {
 
     annotationProcessor(libs.room.compiler)
     implementation(libs.room.runtime)
+    implementation("androidx.navigation:navigation-fragment:2.7.7")
 }

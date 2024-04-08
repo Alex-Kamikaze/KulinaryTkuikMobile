@@ -15,7 +15,7 @@ public class BludoApplication extends Application {
     public void onCreate() {
         super.onCreate();
         INSTANCE = this;
-        db = Room.databaseBuilder(this, AppDatabase.class, "app.db").allowMainThreadQueries().build();
+        db = Room.databaseBuilder(this, AppDatabase.class, "app.db").allowMainThreadQueries().addMigrations(AppDatabase.MIGRATION_1_2).build();
     }
 
     public static BludoApplication getInstance() {
