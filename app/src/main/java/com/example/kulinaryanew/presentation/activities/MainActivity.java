@@ -2,12 +2,7 @@ package com.example.kulinaryanew.presentation.activities;
 
 import android.os.Bundle;
 
-import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.core.graphics.Insets;
-import androidx.core.view.ViewCompat;
-import androidx.core.view.WindowInsetsCompat;
-import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.navigation.Navigation;
 
@@ -18,7 +13,6 @@ import com.example.kulinaryanew.presentation.adapters.FoodListAdapter;
 import com.example.kulinaryanew.presentation.viewmodels.FoodListViewModel;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     FoodListViewModel foodListViewModel;

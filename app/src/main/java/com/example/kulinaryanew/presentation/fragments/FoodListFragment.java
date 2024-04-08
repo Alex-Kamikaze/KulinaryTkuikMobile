@@ -18,6 +18,7 @@ public class FoodListFragment extends Fragment {
     FragmentFoodListBinding viewBinding;
     NavController navController;
     public FoodListFragment() {}
+
     public static FoodListFragment newInstance() {
         return new FoodListFragment();
     }
@@ -31,7 +32,9 @@ public class FoodListFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         viewBinding = FragmentFoodListBinding.inflate(inflater);
-        viewBinding.addFoodButton.setOnClickListener(v -> {});
+        viewBinding.addFoodButton.setOnClickListener(v -> {
+            Navigation.findNavController(viewBinding.getRoot()).navigate(R.id.action_foodListFragment_to_addFoodFragment);
+        });
         return viewBinding.getRoot();
     }
 

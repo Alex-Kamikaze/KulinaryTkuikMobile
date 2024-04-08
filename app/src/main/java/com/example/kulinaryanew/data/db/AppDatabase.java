@@ -1,7 +1,6 @@
 package com.example.kulinaryanew.data.db;
 
 import androidx.annotation.NonNull;
-import androidx.room.AutoMigration;
 import androidx.room.Database;
 import androidx.room.RoomDatabase;
 import androidx.room.migration.Migration;
@@ -12,13 +11,17 @@ public abstract class AppDatabase extends RoomDatabase {
     public abstract BludoDao getBludoDao();
 
     public abstract CategoryDao getCategoryDao();
-    //TODO: Дописать миграцию для Room
     public static final Migration MIGRATION_1_2 = new Migration(1, 2) {
         @Override
         public void migrate(@NonNull SupportSQLiteDatabase supportSQLiteDatabase) {
-            supportSQLiteDatabase.execSQL("ALTER TABLE BludoEntity ADD COLUMN BludoPhotoUri TEXT");
-            supportSQLiteDatabase.execSQL("UPDATE BludoEntity SET BludoPhotoUri = CAST(BludoPhoto AS TEXT)");
-            supportSQLiteDatabase.execSQL("ALTER TABLE BludoEntity DROP COLUMN BludoPhoto");
+            supportSQLiteDatabase.execSQL("ALTER TABLE BludoEntity ADD COLUMN BludoImageUri TEXT");
+            supportSQLiteDatabase.execSQL("UPDATE BludoEntity SET BludoImageUri = '' || BludoPhoto");
+            supportSQLiteDatabase.execSQL("CREATE TEMPORARY TABLE BludoEntitybackup(BludoId INTEGER, BludoName TEXT, CategoryId INTEGER, BludoImageUri TEXT, BludoPrice INTEGER)");
+            supportSQLiteDatabase.execSQL("INSERT INTO BludoEntitybackup SELECT BludoId, BludoName, CategoryId, BludoImageUri, BludoPrice FROM BludoEntity");
+            supportSQLiteDatabase.execSQL("DROP TABLE BludoEntity");
+            supportSQLiteDatabase.execSQL("CREATE TABLE BludoEntity(BludoId INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL, BludoName TEXT, CategoryId INTEGER NOT NULL, BludoImageUri TEXT, BludoPrice INTEGER NOT NULL, FOREIGN KEY (CategoryId) REFERENCES BludoCategoryEntity(CategoryId) ON DELETE CASCADE)");
+            supportSQLiteDatabase.execSQL("INSERT INTO BludoEntity SELECT BludoId, BludoName, CategoryId, BludoImageUri, BludoPrice FROM BludoEntitybackup");
+            supportSQLiteDatabase.execSQL("DROP TABLE BludoEntitybackup");
         }
     };
 }
